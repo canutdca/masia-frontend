@@ -1,15 +1,27 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
+import { useNavigation } from '_core/hooks/useNavigation'
 import { InputText } from '_shared/components/InputText'
+import { HOME_PAGE_ROUTE } from '../../../routes'
 import { useUserDetail } from './user-detail.hook'
 
 export function UserDetail() {
 
+	const { goTo } = useNavigation()
 	const { saveUser } = useUserDetail()
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
+	const [error, setError] = useState('')
 
+	const save = async (name: string, email: string) => {
+		try {
+			await saveUser(name, email)
+			goTo(HOME_PAGE_ROUTE)
+		} catch (error) {
+			setError('Error: ' + error)
+		}
+	}
 
 	return (
 		<Section>
@@ -30,7 +42,8 @@ export function UserDetail() {
 					style={'simple'}
 				/>
 			</Article>
-			<Button onClick={() => saveUser(name, email)}>Save</Button>
+			<Button onClick={() => save(name, email)}>Save</Button>
+			<Error>{error}</Error>
 		</Section>
 
 	)
@@ -49,4 +62,7 @@ const Article = styled.article`
 `
 const Button = styled.button`
 	margin: 1rem;
+`
+const Error = styled.div`
+	color: red;
 `

@@ -21,6 +21,7 @@ export function KillDetail() {
 			setError('Error: ' + error)
 		}
 	}
+	
 	return (
 		<Section>
 			<Article>
