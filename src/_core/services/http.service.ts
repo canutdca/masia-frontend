@@ -22,10 +22,23 @@ export const httpPutOrPost = async <T>(path: string, method: 'POST' | 'PUT', obj
 				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 			}
 		})
-		console.log('response', response)
 		if (!response.ok) throw new HttpError(response.statusText)
 	} catch (err) {
-		alert(err)
+		console.log(err)
+		throw new HttpError('ERR_CONNECTION_REFUSED')
+	}
+}
+
+export const httpDelete = async (path: string, id: string): Promise<void> => {
+	try {
+		const response = await fetch(`${basePath}${path}/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			}
+		})
+		if (!response.ok) throw new HttpError(response.statusText)
+	} catch (err) {
 		console.log(err)
 		throw new HttpError('ERR_CONNECTION_REFUSED')
 	}

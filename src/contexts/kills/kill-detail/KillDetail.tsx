@@ -1,16 +1,26 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
+import { useNavigation } from '_core/hooks/useNavigation'
 import { InputText } from '_shared/components/InputText'
-import { useUserDetail } from './user-detail.hook'
+import { KILLS_PAGE_ROUTE } from '../../../routes'
+import { useKillDetail } from './kill-detail.hook'
 
-export function UserDetail() {
+export function KillDetail() {
 
-	const { saveUser } = useUserDetail()
+	const { goTo } = useNavigation()
+	const { saveKill } = useKillDetail()
 
 	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
+	const [error, setError] = useState('')
 
-
+	const save = async (name: string) => {
+		try {
+			await saveKill(name)
+			goTo(KILLS_PAGE_ROUTE)
+		} catch (error) {
+			setError('Error: ' + error)
+		}
+	}
 	return (
 		<Section>
 			<Article>
@@ -22,15 +32,9 @@ export function UserDetail() {
 					autoFocus={true}
 				/>
 				<br/>
-				<br/>
-				<InputText
-					placeholder='Email'
-					value={email}
-					onChange={(value) => setEmail(value)}
-					style={'simple'}
-				/>
 			</Article>
-			<Button onClick={() => saveUser(name, email)}>Save</Button>
+			<Button onClick={() => save(name)}>Save</Button>
+			<Error>{error}</Error>
 		</Section>
 
 	)
@@ -42,6 +46,7 @@ const Section = styled.section`
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-center;
+	align-items: center;
 `
 
 const Article = styled.article`
@@ -49,4 +54,8 @@ const Article = styled.article`
 `
 const Button = styled.button`
 	margin: 1rem;
+`
+
+const Error = styled.div`
+	color: red;
 `

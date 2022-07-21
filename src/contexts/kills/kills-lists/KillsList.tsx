@@ -2,52 +2,51 @@ import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 import { useNavigation } from '_core/hooks/useNavigation'
 import { Card } from '_shared/components/Card'
-import { ADDUSER_PAGE_ROUTE } from '../../../routes'
-import { User } from '../domain/user.model'
-import { useUsersList } from './users-list.hook'
+import { ADDKILL_PAGE_ROUTE } from '../../../routes'
+import { Kill } from '../domain/kill.model'
+import { useKillsList } from './kills-list.hook'
 
-export function GroupsList() {
-	const [users, setUsers] = useState<User[]>([])
+export function KillsList() {
+	const [kills, setKills] = useState<Kill[]>([])
 	const { goTo } = useNavigation()
 
-	const { getUsers, deleteUser } = useUsersList()
-
+	const { getKills, deleteKill } = useKillsList()
 	const fetchData = async () => {
-		setUsers(await getUsers())
+		setKills(await getKills())
 	}
 
 	useEffect(() => {
 		fetchData()
 	}, [])
 
-	const onDelete = async (userId: string) => {
+	const onDelete = async (killId: string) => {
 		if (confirm('Estás seguro que deseas borrar esto?')){
 			try {
-				await deleteUser(userId)
+				await deleteKill(killId)
 				fetchData()
 			} catch (error) {
 				alert('Error: ' + error)
 			}
 		}
 	}
-
-	const goToNewUser = () => {
-		goTo(ADDUSER_PAGE_ROUTE)
+	
+	const goToNewKill = () => {
+		goTo(ADDKILL_PAGE_ROUTE)
 	}
 
 	return (
 		<Section>
-			{users.map((user: User) =>
-				<Article key={user.id} onClick={() => onDelete(user.id)}>
+			{kills.map((kill: Kill) =>
+				<Article key={kill.id} onClick={() => onDelete(kill.id)}>
 					<Card>
-						{user.name}
+						{kill.name}
 					</Card>
 				</Article>
 			)}
 
-			<Article onClick={() => goToNewUser()}>
+			<Article onClick={() => goToNewKill()}>
 				<Card color={'secundary'}>
-					New User
+					New Kill
 				</Card>
 			</Article>
 		</Section>

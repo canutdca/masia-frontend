@@ -5,10 +5,16 @@ interface RInputTextProps {
 	value: string
 	onChange: (newName: string) => void
 	style?: 'title' | 'simple'
+	autoFocus?: boolean
 }
 
-export function InputText({placeholder, value, onChange, style = 'simple' }: RInputTextProps) {
-
+export function InputText({
+	placeholder,
+	value,
+	onChange,
+	style = 'simple',
+	autoFocus = false
+}: RInputTextProps) {
 
 	const genericStyle = style === 'simple' ? '' : `
 		font-size: 1.2rem;
@@ -28,7 +34,7 @@ export function InputText({placeholder, value, onChange, style = 'simple' }: RIn
 				value={value}
 				onChange={changeInput}
 				placeholder={placeholder}
-				autoFocus
+				autoFocus={autoFocus}
 			/>
 		</>
 	)

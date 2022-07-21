@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { initGameApi } from './game-api.service'
 
-export function useUsersList() {
+export function useGame() {
 
 	const [message, setMessage] = useState('')
 
