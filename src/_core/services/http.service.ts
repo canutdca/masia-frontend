@@ -1,6 +1,6 @@
 import { Saveable } from 'contexts/_shared/domain/Saveable.model'
 
-const basePath = 'http://localhost:5001'
+const basePath = import.meta.env.VITE_API_URL
 
 export const httpGet = async <T>(path: string): Promise<T> => {
 	try {
