@@ -1,14 +1,20 @@
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
+import { useCookies } from '_core/hooks/useCookies'
 import { useNavigation } from '_core/hooks/useNavigation'
 import { Card } from '_shared/components/Card'
 import { ADDKILL_PAGE_ROUTE } from '../../../routes'
 import { Kill } from '../domain/kill.model'
 import { useKillsList } from './kills-list.hook'
 
+const COOKIE = 'showKillsList'
+
 export function KillsList() {
 	const [kills, setKills] = useState<Kill[]>([])
+	const [show, setShow] = useState(false)
+
 	const { goTo } = useNavigation()
+	const { addCookie, getCookie } = useCookies()
 
 	const { getKills, deleteKill } = useKillsList()
 	const fetchData = async () => {
@@ -16,7 +22,14 @@ export function KillsList() {
 	}
 
 	useEffect(() => {
+		if (getCookie(COOKIE) !== 'true') 
+		{
+			const pass = prompt('Inserta la contraseña de acceso a esta sección.')
+			if (pass === 'muerteporkiki') addCookie(COOKIE, 'true')
+			else return
+		}
 		fetchData()
+		setShow(true)
 	}, [])
 
 	const onDelete = async (killId: string) => {
@@ -34,7 +47,7 @@ export function KillsList() {
 		goTo(ADDKILL_PAGE_ROUTE)
 	}
 
-	return (
+	return show ? (
 		<Section>
 			{kills.map((kill: Kill) =>
 				<Article key={kill.id} onClick={() => onDelete(kill.id)}>
@@ -50,8 +63,7 @@ export function KillsList() {
 				</Card>
 			</Article>
 		</Section>
-
-	)
+	) : <></>
 }
 
 const Section = styled.section`
