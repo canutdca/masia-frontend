@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 import { useNavigation } from '_core/hooks/useNavigation'
 import { InputText } from '_shared/components/InputText'
-import { HOME_PAGE_ROUTE } from '../../../routes'
+import { USERS_PAGE_ROUTE } from '../../../routes'
 import { useUserDetail } from './user-detail.hook'
 
 export function UserDetail() {
@@ -17,7 +17,7 @@ export function UserDetail() {
 	const save = async (name: string, email: string) => {
 		try {
 			await saveUser(name, email)
-			goTo(HOME_PAGE_ROUTE)
+			goTo(USERS_PAGE_ROUTE)
 		} catch (error) {
 			setError('Error: ' + error)
 		}
