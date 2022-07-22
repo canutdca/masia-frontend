@@ -1,16 +1,18 @@
 import styled from '@emotion/styled'
 import { useNavigation } from '_core/hooks/useNavigation'
-import { HOME_PAGE_ROUTE, KILLS_PAGE_ROUTE } from '../../routes'
+import { HOME_PAGE_ROUTE, KILLS_PAGE_ROUTE, USERS_PAGE_ROUTE } from '../../routes'
 
 export function Header() {
 	const { goTo } = useNavigation()
 
 	const goToHome = () => goTo(HOME_PAGE_ROUTE)
+	const goToUsers = () => goTo(USERS_PAGE_ROUTE)
 	const goToKills = () => goTo(KILLS_PAGE_ROUTE)
 
 	return (
 		<Root>
 			<H1 onClick={goToHome}>Masia</H1>
+			<H3 onClick={goToUsers}>Users</H3>
 			<H3 onClick={goToKills}>Maneras de matar</H3>
 		</Root>
 	)
