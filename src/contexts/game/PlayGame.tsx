@@ -11,7 +11,7 @@ export function PlayGame() {
 Recuerda que se va a enviar un email a todxs los jugadorxs.
 Si es así, ingresa la contraseña`);
 
-		if (pass === 'daledondale4950') initGame()
+		if (pass === 'daledondale666') initGame()
 	}
 
 	return (

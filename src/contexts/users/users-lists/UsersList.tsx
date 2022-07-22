@@ -26,7 +26,7 @@ export function GroupsList() {
 		if (getCookie(COOKIE) !== 'true') 
 		{
 			const pass = prompt('Inserta la contraseña de acceso a esta sección.')
-			if (pass === 'batmasia') addCookie(COOKIE, 'true')
+			if (pass === 'batmasia22') addCookie(COOKIE, 'true')
 			else return
 		}
 		fetchData()

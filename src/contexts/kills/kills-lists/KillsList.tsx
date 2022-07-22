@@ -25,7 +25,7 @@ export function KillsList() {
 		if (getCookie(COOKIE) !== 'true') 
 		{
 			const pass = prompt('Inserta la contraseña de acceso a esta sección.')
-			if (pass === 'muerteporkiki') addCookie(COOKIE, 'true')
+			if (pass === 'muerteporkiki69') addCookie(COOKIE, 'true')
 			else return
 		}
 		fetchData()
