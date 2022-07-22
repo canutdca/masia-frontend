@@ -15,8 +15,8 @@ export function KillsList() {
 
 	const { goTo } = useNavigation()
 	const { addCookie, getCookie } = useCookies()
-
 	const { getKills, deleteKill } = useKillsList()
+
 	const fetchData = async () => {
 		setKills(await getKills())
 	}

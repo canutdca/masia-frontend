@@ -7,9 +7,9 @@ export function PlayGame() {
 
 	const play = () => {
 		var pass = prompt(
-			`Estás seguro que vas a iniciar el juego?
-			Recuerda que se va a enviar un email a todxs los jugadorxs.
-			Si es así, ingresa la contraseña`);
+`Estás seguro que vas a iniciar el juego?
+Recuerda que se va a enviar un email a todxs los jugadorxs.
+Si es así, ingresa la contraseña`);
 
 		if (pass === 'daledondale') {
 			initGame()
