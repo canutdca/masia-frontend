@@ -11,10 +11,9 @@ export function PlayGame() {
 Recuerda que se va a enviar un email a todxs los jugadorxs.
 Si es así, ingresa la contraseña`);
 
-		if (pass === 'daledondale') {
-			initGame()
-		}
+		if (pass === 'daledondale') initGame()
 	}
+
 	return (
 		<section>
 			<Button onClick={play}>PLAY</Button>

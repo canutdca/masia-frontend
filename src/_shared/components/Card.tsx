@@ -9,7 +9,7 @@ export function Card({ children, color = 'primary' }: RCardProps) {
 
 	const Root = styled.div`
 		height: 150px;
-		aspect-ratio: 1 / 1;
+		padding: 8px;
 		background-color: ${color === 'primary' ? '#85b2d2' : '#5ba6cd'};
 		color: #323232;
 		display: flex;

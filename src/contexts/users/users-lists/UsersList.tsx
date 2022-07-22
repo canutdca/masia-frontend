@@ -53,7 +53,8 @@ export function GroupsList() {
 			{users.map((user: User) =>
 				<Article key={user.id} onClick={() => onDelete(user.id)}>
 					<Card>
-						{user.name}
+						{user.name} <br />
+						{user.email}
 					</Card>
 				</Article>
 			)}
