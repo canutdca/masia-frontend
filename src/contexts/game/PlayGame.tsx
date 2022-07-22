@@ -11,18 +11,31 @@ export function PlayGame() {
 Recuerda que se va a enviar un email a todxs los jugadorxs.
 Si es así, ingresa la contraseña`);
 
-		if (pass === 'daledondale') initGame()
+		if (pass === 'daledondale4950') initGame()
 	}
 
 	return (
 		<section>
-			<Button onClick={play}>PLAY</Button>
-			{message}
+			<ButtonContainer>
+				<Button onClick={play}>PLAY</Button>
+				<div>{message}</div>
+			</ButtonContainer>
 		</section>
 
 	)
 }
 
+const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2rem;
+`
+
 const Button = styled.button`
-	margin: 8px;
+	width: max-content;
+	margin: 1rem;
+	font-size: 2rem;
+	display: block;
 `

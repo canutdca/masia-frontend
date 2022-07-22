@@ -11,7 +11,7 @@ export function Header() {
 
 	return (
 		<Root>
-			<H1 onClick={goToHome}>Masia</H1>
+			<H1 onClick={goToHome}>Matamasia</H1>
 			<H3 onClick={goToUsers}>Users</H3>
 			<H3 onClick={goToKills}>Maneras de matar</H3>
 		</Root>
